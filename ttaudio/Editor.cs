@@ -214,6 +214,8 @@ namespace ttaudio
 
             this.comboBoxPlaybackMode.SelectedIndex = (int) p.PlaybackMode;
 
+            this.checkBoxOrderOid.Checked = p.SortOid;
+
             this.Text = String.Join(" - ", new string[] { About.Product, this.document.ttaFile }
                 .Where(_ => !String.IsNullOrEmpty(_)));
         }
@@ -230,6 +232,7 @@ namespace ttaudio
                     p.ProductId = productId;
                 }
                 p.PlaybackMode = (PlaybackModes)this.comboBoxPlaybackMode.SelectedIndex;
+                p.SortOid = this.checkBoxOrderOid.Checked;
             }
         }
 
@@ -401,6 +404,10 @@ namespace ttaudio
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        private void checkBoxOrderOid_CheckedChanged(object sender, EventArgs e)
+        {
+            UpdateModel(); // Updating the model, will also sort the tracks
+            UpdateView();
         }
     }
 }
