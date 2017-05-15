@@ -222,5 +222,86 @@ namespace ttaenc
 ");
             }
         }
+
+        public static void CreatePrinterSVGPage(string testPagePath)
+        {
+            var code = new TiptoiOidCode();
+
+
+
+            using (var w = new StreamWriter(testPagePath))
+            {
+                w.WriteLine(@"<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?>
+<!DOCTYPE svg PUBLIC ""-//W3C//DTD SVG 20010904//EN""  ""http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"">
+<svg class=""oid-area"">
+");
+
+
+                var defaultOidWriter = new OidSvgWriter(code);
+                var oid = 10250;
+
+                var powBase = 1.1;
+/*
+                for (int dotSize = -4; dotSize <= 4; ++dotSize)
+                {
+                    var fDotSize = (float)Math.Pow(powBase, dotSize);
+                    w.Write("<td>"); w.Write(T(String.Format("Dot Size {0:F4} cm", defaultOidWriter.DotSize * fDotSize))); w.Write("</td>");
+                }
+                w.Write("</tr>");*/
+
+                for (int gridSpacing = -4; gridSpacing <= 4; ++gridSpacing)
+                {
+                    var fGridSpacing = (float)Math.Pow(powBase, gridSpacing);
+                    //w.Write("<tr>");
+                    //w.Write("<td>"); w.Write(T(String.Format("Grid Spacing {0:F4} cm", defaultOidWriter.GridSpacing * fGridSpacing))); w.Write("</td>");
+                    for (int dotSize = -4; dotSize <= 4; ++dotSize)
+                    {
+                        var fDotSize = (float)Math.Pow(powBase, dotSize);
+
+                        var oidWriter = new OidSvgWriter(code)
+                        {
+                            DotOffset = defaultOidWriter.DotOffset,
+                            DotSize = defaultOidWriter.DotSize * fDotSize,
+                            GridSpacing = defaultOidWriter.GridSpacing * fGridSpacing
+                        };
+                        w.WriteLine("<defs>");
+                        oidWriter.OidPattern(w, oid);
+                        w.WriteLine(@"</defs>");
+                        w.WriteLine(@"<rect fill=""url(#Code{0})"" x=""{1}cm"" y=""{2}cm"" width=""1cm"" height=""1cm""/>", oid, (dotSize + 5) * 2, (gridSpacing + 5) * 2);
+                        oid++;
+                    }
+                }
+
+                w.WriteLine(@"</svg>");
+            }
+        }
+
+        public static void CreateTemplateSVGPage(string testPagePath)
+        {
+            var code = new TiptoiOidCode();
+
+
+
+            using (var w = new StreamWriter(testPagePath))
+            {
+                w.WriteLine(@"<?xml version=""1.0"" encoding=""ISO-8859-1"" standalone=""no""?>
+<!DOCTYPE svg PUBLIC ""-//W3C//DTD SVG 20010904//EN""  ""http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"">
+<svg class=""oid-area"">
+");
+
+                w.WriteLine("<defs>");
+                var oidWriter = new OidSvgWriter(code);
+
+                for (var oid = 800; oid < 840; oid++)
+                {
+                    oidWriter.OidPattern(w, oid);
+                }
+                for (var oid = 10250; oid < 10290; oid++) {   
+                        oidWriter.OidPattern(w, oid);
+                }
+                w.WriteLine(@"</defs>");
+                w.WriteLine(@"</svg>");
+            }
+        }
     }
 }

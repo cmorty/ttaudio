@@ -401,8 +401,28 @@ namespace ttaudio
             SaveAs();
         }
 
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void sVGTestPageToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            Task.Factory.StartNew(() =>
+            {
+                var testPage = Path.Combine(About.LocalApplicationDataDirectory, "tiptoi-printer-test.svg");
+                PathUtil.EnsureParentDirectoryExists(testPage);
+                OidSvgWriter.CreatePrinterSVGPage(testPage);
+                Process.Start(testPage);
+            }, TaskCreationOptions.LongRunning);
+
+        }
+
+        private void sVGTemplateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Task.Factory.StartNew(() =>
+            {
+                var testPage = Path.Combine(About.LocalApplicationDataDirectory, "template.svg");
+                PathUtil.EnsureParentDirectoryExists(testPage);
+                OidSvgWriter.CreateTemplateSVGPage(testPage);
+                Process.Start(testPage);
+            }, TaskCreationOptions.LongRunning);
+        }
 
         private void checkBoxOrderOid_CheckedChanged(object sender, EventArgs e)
         {

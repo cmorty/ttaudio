@@ -48,6 +48,8 @@
             this.uploadToPenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printerTestPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sVGTestPageToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sVGTemplateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label2 = new System.Windows.Forms.Label();
@@ -235,7 +237,10 @@
             // toolsToolStripMenuItem
             // 
             this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.printerTestPageToolStripMenuItem});
+            this.printerTestPageToolStripMenuItem,
+            this.sVGTestPageToolStripMenuItem,
+            this.sVGTemplateToolStripMenuItem
+            });
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
             this.toolsToolStripMenuItem.Text = "&Tools";
@@ -246,6 +251,20 @@
             this.printerTestPageToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.printerTestPageToolStripMenuItem.Text = "&Printer test page...";
             this.printerTestPageToolStripMenuItem.Click += new System.EventHandler(this.printerTestPageToolStripMenuItem_Click);
+            // 
+            // sVGTestPageToolStripMenuItem
+            // 
+            this.sVGTestPageToolStripMenuItem.Name = "sVGTestPageToolStripMenuItem";
+            this.sVGTestPageToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.sVGTestPageToolStripMenuItem.Text = "SVG-Test-Page";
+            this.sVGTestPageToolStripMenuItem.Click += new System.EventHandler(this.sVGTestPageToolStripMenuItem_Click);
+            // 
+            // sVGTemplateToolStripMenuItem
+            // 
+            this.sVGTemplateToolStripMenuItem.Name = "sVGTemplateToolStripMenuItem";
+            this.sVGTemplateToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
+            this.sVGTemplateToolStripMenuItem.Text = "SVG-Template";
+            this.sVGTemplateToolStripMenuItem.Click += new System.EventHandler(this.sVGTemplateToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
@@ -362,16 +381,16 @@
             this.toolStripButtonPrint.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // label4
-            // 
+            //
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(173, 39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(81, 13);
             this.label4.TabIndex = 3;
             this.label4.Text = "Playback Mode";
-            // 
+            //
             // comboBoxPlaybackMode
-            // 
+            //
             this.comboBoxPlaybackMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxPlaybackMode.FormattingEnabled = true;
             this.comboBoxPlaybackMode.Items.AddRange(new object[] {
@@ -386,7 +405,7 @@
             this.comboBoxPlaybackMode.Size = new System.Drawing.Size(362, 21);
             this.comboBoxPlaybackMode.TabIndex = 7;
             this.comboBoxPlaybackMode.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
+            //
             // Editor
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -445,6 +464,9 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonPrint;
         private System.Windows.Forms.ComboBox comboBoxPlaybackMode;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ToolStripMenuItem sVGTestPageToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sVGTemplateToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reindexToolStripMenuItem;
         private System.Windows.Forms.CheckBox checkBoxOrderOid;
         private System.Windows.Forms.Label label5;
     }
